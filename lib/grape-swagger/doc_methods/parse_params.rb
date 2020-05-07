@@ -91,7 +91,7 @@ module GrapeSwagger
 
           array_items[:default] = value_type[:default] if value_type[:default].present?
 
-          @parsed_param[:in] = param_type || 'formData'
+          @parsed_param[:in] = param_type || value_type[:method] == 'GET' ? 'query' : 'formData'
           @parsed_param[:items] = array_items
           @parsed_param[:type] = 'array'
           @parsed_param[:collectionFormat] = collection_format if DataType.collections.include?(collection_format)
